@@ -1,6 +1,6 @@
 # CRUD Operations in Django ORM
 
-## í´¹ 1. Create a Book
+##  1. Create a Book
 ```python
 from bookshelf.models import Book
 
@@ -14,7 +14,7 @@ print(book)
 
 
 
-  Update a Book
+  3.Update a Book
 
   book = Book.objects.get(title="1984")
   book.title = "Nineteen Eighty-Four"
