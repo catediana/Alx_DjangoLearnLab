@@ -27,7 +27,7 @@ def query_books_in_library(library_name):
 def query_librarian_of_library(librarian_name):
     """Retrieve the librarian for a specific library."""
     try:
-        librarian= Librarian.objects.get(name=librarian_name)
+        librarian= Librarian.objects.get(library=librarian_name)
        
         print(f"Librarian for library  {librarian.name}")
     
