@@ -24,15 +24,13 @@ def query_books_in_library(library_name):
     except Library.DoesNotExist:
         print(f"No library found with the name: {library_name}")
 
-def query_librarian_of_library(library_name):
+def query_librarian_of_library(librarian_name):
     """Retrieve the librarian for a specific library."""
     try:
-        library = Library.objects.get(name=library_name)
-        # Using the related_name 'librarian' defined in the OneToOneField.
-        librarian = library.librarian
-        print(f"Librarian for library '{library_name}': {librarian.name}")
-    except Library.DoesNotExist:
-        print(f"No library found with the name: {library_name}")
+        librarian= Librarian.objects.get(name=librarian_name)
+       
+        print(f"Librarian for library  {librarian.name}")
+    
     except Librarian.DoesNotExist:
-        print(f"No librarian assigned to the library: {library_name}")
+        print("No librarian assigned to the library")
 
