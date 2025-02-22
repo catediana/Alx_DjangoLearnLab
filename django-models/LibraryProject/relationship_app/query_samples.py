@@ -4,6 +4,7 @@ def query_books_by_author(author_name):
 
     #Querying all books by a specific author.
     try:
+        author = Author.objects.filter(author=author)
         author = Author.objects.get(name=author_name)
         books = author.books.all()
         print(f" These Books were wrote by {author_name}:")
