@@ -23,7 +23,7 @@ from . import views
 urlpatterns = [
     #including m relationship APP URL
     path('admin/', admin.site.urls),
-    path('', include('relationship_app.urls')),
+    path('', include('relationship_app/urls.py')),
 
     # URL for the function-based view listing all books.
     path('books/', views.list_books, name='list_books'),
