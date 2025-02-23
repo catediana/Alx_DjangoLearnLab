@@ -16,7 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import path, include
+from . import views
+
 
 urlpatterns = [
+    #including m relationship APP URL
     path('admin/', admin.site.urls),
+    path('', include('relationship_app.urls')),
+
+    # URL for the function-based view listing all books.
+    path('books/', views.list_books, name='list_books'),
+
+    # URL for the class-based view displaying a library's details.
+
+    path('library/', views.LibraryDetailView.as_view(), name='library_detail'),
 ]
+
+
