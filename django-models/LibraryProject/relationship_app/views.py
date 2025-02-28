@@ -18,3 +18,27 @@ class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
+
+
+    #creating my homepage view 
+
+def home(request):
+    return render(request, 'relationship_app/home.html')
+
+
+
+ # view for user registration 
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()  # This creates the new user account
+            messages.success(request, "Your account has been created! You can now log in.")
+            return redirect('login')  # Redirect to the login page
+    else:
+        form = UserCreationForm()
+    return render(request, 'relationship_app/register.html', {'form': form})
