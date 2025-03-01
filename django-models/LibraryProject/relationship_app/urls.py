@@ -7,7 +7,7 @@ urlpatterns = [
     # Function-based view for listing all books
     path('books/', views.list_books, name='list_books'),
     
-    # Class-based view for showing library details; expects a library primary key
-    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
+    # Class-based view for showing library details
+    path('library/', views.LibraryDetailView.as_view(), name='library_detail'),
 ]
 

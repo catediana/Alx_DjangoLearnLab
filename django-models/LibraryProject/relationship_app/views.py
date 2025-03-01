@@ -36,9 +36,9 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()  # This creates the new user account
+            form.save() 
             messages.success(request, "Your account has been created! You can now log in.")
-            return redirect('login')  # Redirect to the login page
+            return redirect('login')  
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
