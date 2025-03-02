@@ -30,8 +30,7 @@ from relationship_app import views
 
 
 urlpatterns = [
-    #home view 
-     path('', views.home, name='home'),
+
      
     # Login view 
     path('login/', auth_views.LoginView.as_view(template_name='relationship_app/login.html'), name='login'),

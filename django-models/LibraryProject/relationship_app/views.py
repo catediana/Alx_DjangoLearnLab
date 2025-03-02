@@ -20,12 +20,6 @@ class LibraryDetailView(DetailView):
     context_object_name = 'library'
 
 
-    #creating my homepage view 
-
-def home(request):
-    return render(request, 'relationship_app/home.html')
-
-
 
  # view for user registration 
 from django.shortcuts import render, redirect
