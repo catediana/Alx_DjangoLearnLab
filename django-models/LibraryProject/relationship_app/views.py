@@ -3,10 +3,11 @@ from .models import Book
 from .models import Library 
 from django.views.generic.detail import DetailView
 
-
+#serving login.html as homepage
+def home(request):
+    return render(request, 'login.html')
 
 # Function-based view that lists all books in the database.
-
 
 def list_books(request):
     books = Book.objects.all()
