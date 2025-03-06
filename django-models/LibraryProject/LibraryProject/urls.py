@@ -17,21 +17,14 @@ Including another URLconf
 # project_name/urls.py
 from django.contrib import admin
 from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('relationship_app.urls')),
-]
-
-
-from django.urls import path
 from django.contrib.auth import views as auth_views
 from relationship_app import views
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('relationship_app.urls')),
 
-     
     # Login view 
     path('login/', auth_views.LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
     
