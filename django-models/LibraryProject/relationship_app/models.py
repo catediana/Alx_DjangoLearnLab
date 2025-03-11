@@ -47,11 +47,11 @@ class Librarian(models.Model):
 
 
 # Define the role choices.
-ROLE_CHOICES = (
+ROLE_CHOICES =[
     ('Admin', 'Admin'),
     ('Librarian', 'Librarian'),
     ('Member', 'Member'),
-)
+]
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
