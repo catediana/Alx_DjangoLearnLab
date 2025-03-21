@@ -11,8 +11,5 @@ def is_admin(user):
     )
 
 @user_passes_test(is_admin)
-def admin_view(request):
-
-#View that is accessible only to users with the 'Admin' role.
-
+def admin_view(request)
     return HttpResponse("Welcome, Admin!")
