@@ -66,6 +66,8 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Default role is set to 'Member'; adjust as needed.
         UserProfile.objects.create(user=instance, role='Member')
+    else:
+        instance.userprofile.save()
 
 # Ensure the profile is saved when the user is saved.
 @receiver(post_save, sender=User)
