@@ -45,14 +45,14 @@ def register(request):
 # Helper functions to test for specific roles.
 def is_admin(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
-@loginrequired
+
 def is_librarian(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
 
 def is_member(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
-View for users with the Admin role.
+#View for users with the Admin role.
 @user_passes_test(is_admin)
 def admin_view(request):
     return HttpResponse("Welcome, Admin!")
