@@ -42,9 +42,12 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-# Helper functions to test for specific roles.
+# role checking function for admin
 def is_admin(user):
-    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+    try:
+        return user.is_authenticated and user.userprofile.role == 'Admin'
+    except AttributeError:
+        return False
 
 def is_librarian(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
@@ -55,7 +58,7 @@ def is_member(user):
 #View for users with the Admin role.
 @user_passes_test(is_admin)
 def admin_view(request):
-    return HttpResponse("Welcome, Admin!")
+    return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
 
 # View for users with the Librarian role.
 @user_passes_test(is_librarian)

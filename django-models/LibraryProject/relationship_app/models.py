@@ -62,14 +62,15 @@ class UserProfile(models.Model):
 
 #  UserProfile when a new User is created.
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_or_save_user_profile(sender, instance, created, **kwargs):
     if created:
-        # Default role is set to 'Member'; adjust as needed.
+        # a new profile with default role 'Member'
         UserProfile.objects.create(user=instance, role='Member')
     else:
-        instance.userprofile.save()
+        # Ensuring that  the profile exists and save it if it does
+        try:
+            instance.userprofile.save()
+        except UserProfile.DoesNotExist:
+            # creating the  profile  if itdoesn't exist, 
+            UserProfile.objects.create(user=instance, role='Member')
 
-# Ensure the profile is saved when the user is saved.
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
