@@ -7,8 +7,8 @@ from django.contrib.auth import login
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
 
-#
 
 
 #serving login.html as homepage
@@ -41,6 +41,12 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
+
+
+def check_role(role):
+    def decorator(user):
+        return hasattr(user, 'userprofile') and user.userprofile.role == role
+    return decorator
 
 # role that checks the function for admin
 def is_admin(user):
