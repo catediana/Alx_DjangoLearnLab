@@ -8,6 +8,6 @@ def is_admin(user):
     # Check that the user is authenticated, has a UserProfile, and role equals 'Admin'
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
-@user_passes_test(is_admin, login_url='/login/')
+@user_passes_test(is_admin)
 def admin_view(request):
-    return HttpResponse("Welcome, Admin!")
+     return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
