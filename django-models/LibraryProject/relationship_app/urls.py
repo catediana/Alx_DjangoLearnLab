@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from .views import list_books
 from django.contrib.auth import views as auth_views
-from . import admin_view, librarian_view, member_view  # Import the role-based view files
+#from . import admin_view, librarian_view, member_view  # Import the role-based view files
 
 urlpatterns = [
     # Function-based view for listing all books
@@ -22,7 +22,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     # URL patterns to route the role‑specific views
-    path('admin_view/', admin_view.admin_view, name='admin_view'),
-    path('librarian_view/', librarian_view.librarian_view, name='librarian_view'),
-    path('member_view/', member_view.member_view, name='member_view'),
+    path('admin_view/', views.admin_view, name='admin_view'),
+    path('librarian_view/', views.librarian_view, name='librarian_view'),
+    path('member_view/', views.member_view, name='member_view'),
 ]
