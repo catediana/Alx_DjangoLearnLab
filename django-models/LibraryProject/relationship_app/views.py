@@ -49,11 +49,13 @@ def check_role(role):
     return decorator
 
 # role that checks the function for admin
-#def is_admin(user):
-   #try:
-        #return user.is_authenticated and user.userprofile.role == 'Admin'
-   #except AttributeError:
-       #return False
+def is_admin(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+#view for users with admin role
+@user_passes_test(is_admin)
+def admin_view(request):
+    return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
+
 
 def is_librarian(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
