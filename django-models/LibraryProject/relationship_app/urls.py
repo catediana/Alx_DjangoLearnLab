@@ -22,7 +22,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     # URL patterns to route the role‑specific views
-    path('admin_view/', admin_view.admin_view, name='admin_view'),
+    path('admin_view/', admin_view.admin_view, name='admin_view')
+
     #path('librarian_view/', librarian_view.librarian_view, name='librarian_view'),
     #path('member_view/', member_view.member_view, name='member_view'),
     
