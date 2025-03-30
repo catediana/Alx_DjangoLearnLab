@@ -49,11 +49,11 @@ def check_role(role):
     return decorator
 
 # role that checks the function for admin
-def is_admin(user):
-    try:
-        return user.is_authenticated and user.userprofile.role == 'Admin'
-    except AttributeError:
-        return False
+#def is_admin(user):
+   #try:
+        #return user.is_authenticated and user.userprofile.role == 'Admin'
+   #except AttributeError:
+       #return False
 
 def is_librarian(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'

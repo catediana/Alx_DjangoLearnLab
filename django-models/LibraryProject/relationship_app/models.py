@@ -47,30 +47,19 @@ class Librarian(models.Model):
 
 
 # Define the role choices.
-ROLE_CHOICES =[
-    ('Admin', 'Admin'),
-    ('Librarian', 'Librarian'),
-    ('Member', 'Member'),
-]
-
 class UserProfile(models.Model):
+    ROLE_CHOICES = (
+        ('Admin', 'Admin'),
+        ('Librarian', 'Librarian'),
+        ('Member', 'Member'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
 
-#  UserProfile when a new User is created.
 @receiver(post_save, sender=User)
-def create_or_save_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        # a new profile with default role 'Member'
-        UserProfile.objects.create(user=instance, role='Member')
-    else:
-        # Ensuring that  the profile exists and save it if it does
-        try:
-            instance.userprofile.save()
-        except UserProfile.DoesNotExist:
-            # creating the  profile  if itdoesn't exist, 
-            UserProfile.objects.create(user=instance, role='Member')
-
+        UserProfile.objects.create(user=instance)
