@@ -62,9 +62,9 @@ def is_member(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
 #View for users with the Admin role.
-@user_passes_test(is_admin)
-def admin_view(request):
-    return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
+#@user_passes_test(is_admin)
+#def admin_view(request):
+   # return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
 
 # View for users with the Librarian role.
 @user_passes_test(is_librarian)
