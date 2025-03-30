@@ -54,26 +54,26 @@ def check_role(role):
 #view for users with admin role
 #@user_passes_test(is_admin)
 #def admin_view(request):
-   # return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
+    #return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
 
 
-def is_librarian(user):
-    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
 
-def is_member(user):
-    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
-
-#View for users with the Admin role.
-#@user_passes_test(is_admin)
-#def admin_view(request):
-   # return HttpResponse("<h1>Welcome, Admin!</h1><p>This area is for administrative tasks.</p>")
-
+# role that checks the function for librarian
+#def is_librarian(user):
+    #return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
 # View for users with the Librarian role.
-@user_passes_test(is_librarian)
-def librarian_view(request):
-    return HttpResponse("Welcome, Librarian!")
+#@user_passes_test(is_librarian)
+#def librarian_view(request):
+    #return HttpResponse("Welcome, Librarian!")
 
+
+
+# role that checks the function for member
+#def is_member(user):
+   # return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 # View for users with the Member role.
-@user_passes_test(is_member)
-def member_view(request):
-    return HttpResponse("Welcome, Member!")
+#@user_passes_test(is_member)
+#def member_view(request):
+   # return HttpResponse("Welcome, Member!")
+
+
