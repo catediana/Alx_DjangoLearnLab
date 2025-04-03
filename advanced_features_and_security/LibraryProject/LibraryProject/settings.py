@@ -27,10 +27,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--4myxh78p&tp)13(^=jell)_)%-so*oamif*tc9cj^42!8q!=b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1"]
+
+# ( Add Security Headers) adding additional browser-side protections.
+SECURE_BROWSER_XSS_FILTER = True  # Prevents reflected XSS attacks
+X_FRAME_OPTIONS = 'DENY'  # Prevents clickjacking attacks
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents MIME-type sniffing.
+
+
+#(Enforce Secure Cookies) ensuring  cookies are sent over HTTPS only.
+CSRF_COOKIE_SECURE = True  # Ensures CSRF cookies are sent over HTTPS only
+SESSION_COOKIE_SECURE = True  # Ensures session cookies are sent over HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+
+
 
 
 # Application definition
@@ -54,7 +66,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',  # for CSP protection
+    
 ]
+
+CSP_DEFAULT_SRC = ("'self'",)  # Only allow content from own domain
+CSP_SCRIPT_SRC = ("'self'", "https://trusted-scripts.example.com")  # Allow scripts only from trusted sources
+CSP_STYLE_SRC = ("'self'", "https://trusted-styles.example.com")  # Allow styles only from trusted sources
+
 
 ROOT_URLCONF = 'LibraryProject.urls'
 

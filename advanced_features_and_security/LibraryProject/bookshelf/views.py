@@ -25,4 +25,9 @@ def book_delete(request, book_id):
     return JsonResponse({'message': f'You can delete the book: {book.title}'})
 
 
+# Using Django ORM to Secure Views
+def search_books(request):
+    query = request.GET.get('q', '')
+    books = Book.objects.filter(title__icontains=query)  # ORM is safe from SQL injection
+    return render(request, 'bookshelf/book_list.html', {'books': books})
 
