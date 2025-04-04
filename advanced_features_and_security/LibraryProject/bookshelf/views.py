@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from .models import Book
+from .forms import ExampleForm
 
 # enforcing permission checks allowing users to perform certain actions.
 @permission_required('bookshelf.can_view', raise_exception=True)
@@ -31,3 +32,8 @@ def search_books(request):
     books = Book.objects.filter(title__icontains=query)  # ORM is safe from SQL injection
     return render(request, 'bookshelf/book_list.html', {'books': books})
 
+
+#
+def my_view(request):
+    form = ExampleForm()
+    return render(request, 'my_template.html', {'form': form})
